@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" type = "text/css" href="{% static 'stock/css/style.css' %}">
+</head>
+
+<body>
+    {% block body_block %}
+    <center>
+    <h1>株分析</h1>
+    <div class="form-row mx-auto" style="width: 200px;">
+        <form action="{% url 'stock:plot' %}" method = "post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-dark my-0 text-white" value="送信">
+        </form>
+    </div>
+    <img src="{% url 'stock:plot' %}" width=300 height=300>
+    </center>
+    {% endblock %}
+</body>
+</html>
