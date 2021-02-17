@@ -5,24 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Stockplot</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" type = "text/css" href="{% static 'stock/css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    {% block body_block %}
-    <center>
-    <h1>株分析</h1>
-    <div class="form-row mx-auto" style="width: 200px;">
-        <form action="{% url 'stock:plot' %}" method = "post">
+    <header>
+        STOCK PLOTs
+    <p class="sub">~add volume~</p>
+    </header>
+    <nav>
+    <form class = "form-control text-white" action="{% url 'stock:plot' %}" method = "post">
             {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" class="btn btn-dark my-0 text-white" value="送信">
-        </form>
-    </div>
-    <img src="{% url 'stock:plot' %}" width=300 height=300>
-    </center>
+            <input type="submit" name="button_1" class="btn btn-dark my-0 text-white" value="graph">
+            <input type="submit" name="button_2" class="btn btn-dark my-0 text-white" value="candle">
+    </form>
+    </nav>
+    {% block body_block %}
+    <main>
+        <div class="sample sample01">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="{% static 'stock/sample1.png' %}" alt="クラウド"></div>
+                <div class="swiper-slide"><img src="{% static 'stock/sample4.png' %}"></div>
+                <div class="swiper-slide"><img src="{% static 'stock/sample3.png' %}" alt="クラウド"></div>
+              </div>
+          
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>     
+    </main>
     {% endblock %}
+    <footer>
+        <p>COPYRIGHT © TATSUYA ALL RIGHTS RESERVED.</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+    <script>
+   var mySwiper = new Swiper('.swiper-container', {
+	autoplay: {
+		delay: 3000,
+		stopOnLastSlide: false,
+		disableOnInteraction: false,
+		reverseDirection: false
+	},
+	
+	pagination: {
+		el: '.swiper-pagination',
+		type: 'bullets',
+		clickable: true
+	}
+});
+    </script>
 </body>
 </html>

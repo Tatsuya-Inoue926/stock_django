@@ -5,5 +5,6 @@ app_name = "stock"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path('result/', views.get_svg, name='plot'),
+    path('result/', views.plt_svg, name='plot'),
+    #path("candle/", views.mpf_svg, name="plot2"),
 ]
